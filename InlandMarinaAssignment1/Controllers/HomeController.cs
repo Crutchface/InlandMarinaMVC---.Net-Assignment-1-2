@@ -15,11 +15,13 @@ namespace InlandMarinaAssignment1.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Page = "Home";
             return View();
         }
 
         public IActionResult Contact()
         {
+            ViewBag.Page = "Contact";
             return View();
         }
 

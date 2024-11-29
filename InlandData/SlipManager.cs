@@ -12,8 +12,11 @@ namespace InlandData
         // Function to return a list of slips and lazy loading in docks as well to display the name of the dock instead of ID 
         public static List<Slip> GetSlips(InlandContext db)
         {
-                                    // Using inland context for dependency injection
-            return db.Slips.Include(d =>d.Dock).ToList(); 
+            // Using inland context for dependency injection
+            return db.Slips
+                .Include(d => d.Dock)
+                .Where(s => !db.Leases.Select(l => l.SlipID).Contains(s.SlipId))
+                .ToList();
         }
         // Function to get a list based on the dock ID provided 
         public static List<Slip> GetSlipsByDock(InlandContext db, int dockId)

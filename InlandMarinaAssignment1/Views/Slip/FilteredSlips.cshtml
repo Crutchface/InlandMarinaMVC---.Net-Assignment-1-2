@@ -10,10 +10,9 @@
         <h1>FilteredSlips</h1>
         <form asp-action="FilteredSlips" method="post">
             <p>
-                <select name="id" asp-items="@ViewBag.Dock" onchange="this.form.submit()">
+                <select name="id" asp-items="@ViewBag.Dock" class="form-select" onchange="this.form.submit()">
                 </select>
             </p>
-
         </form>
     <table class="table table-striped table-bordered">
     <thead>

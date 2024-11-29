@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Inland Marina</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/InlandMarinaAssignment1.styles.css" asp-append-version="true" />
@@ -12,8 +13,8 @@
 <body>
 
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+  @*   <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">InlandMarinaAssignment1</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -36,17 +37,34 @@
                 </div>
             </div>
         </nav>
-    </header>
+
+
+       
+        <div> *@
+            <header class="d-flex justify-content-center  w-100">
+
+                <!-- Full-width navigation bar with padding removed on the left and right -->
+                <ul class="nav nav-pills w-100 justify-content-left align-items-center">
+                    <li class="nav-item"><a class="nav-link text-dark"  asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/index.png" height="50px"/></a></li>
+
+                    <li class="nav-item ms-5"><a class="nav-link text-dark @if (ViewBag.Page == "Home") {<text>active</text>}" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark @if (ViewBag.Page == "Contact") {<text>active</text>}" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark @if (ViewBag.Page == "Slips") {<text>active</text>}" asp-area="" asp-controller="Slip" asp-action="FilteredSlips">View Slips</a></li>
+                    
+                </ul>
+            </header>
+     
+   @*  </header> *@
 
 
 
-    <div class="container">
+   @*  <div class="container"> *@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    @* </div> *@
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted text-center">
         <div class="container">
             &copy; 2024 - Inland Marina - <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
         </div>
@@ -56,5 +74,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+
 </body>
 </html>

@@ -35,7 +35,8 @@ namespace InlandMarinaAssignment1.Controllers
         // Get for filtering Slips by dock: Endpoint to filter slips based on the dock they are in 
 
         public ActionResult FilteredSlips()
-        {   
+        {
+            ViewBag.Page = "Slips";
             // Makes a list of select list items from the get docks function underneath
             List<SelectListItem> docks = GetDocks();
             // Makes a list of all the slips we have. We send the context info for the EF dependency injection
@@ -62,7 +63,8 @@ namespace InlandMarinaAssignment1.Controllers
         // Sets our default as 5, what we set as the selection id for the "Select Dock" added item
         [HttpPost]
         public ActionResult FilteredSlips(string id = "5")
-        {   
+        {
+            ViewBag.Page = "Slips";
             // Makes a select box of all docks again 
             List<SelectListItem> list = GetDocks();
             // Stores it in the viewbag 

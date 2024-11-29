@@ -21,9 +21,20 @@ body {
   margin-bottom: 60px;
 }
 
-nav {
-    background-image: url('../images/inlandbanner_v3_800x100.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 120px;
+#carouselInland {
+    height: 600px; /* Set the desired height for the carousel */
+}
+
+#carouselInland .carousel-inner {
+    height: 100%; /* Ensure the inner container fills the height */
+}
+
+#carouselInland .carousel-item img {
+    object-fit: fill; /* Scale images to cover the area without distortion */
+    height: 100%; /* Make sure the image fills the height of the carousel */
+    width: 100%; /* Ensure images fill the width */
+}
+
+header {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a custom shadow */
 }
