@@ -84,7 +84,7 @@ namespace InlandMarinaAssignment1.Controllers
                     PhoneNumber = registerModel.Phone    
                     
                 };
-                var userResult = await userManager.CreateAsync(newUser);
+                var userResult = await userManager.CreateAsync(newUser, registerModel.Password);
                 if (userResult.Succeeded ) 
                 { 
                     await signInManager.SignInAsync(newUser, false);
@@ -104,9 +104,10 @@ namespace InlandMarinaAssignment1.Controllers
         }
 
 
-        public IActionResult Logout()
-        {
-            return View();
+        public async Task<IActionResult> LogoutAsync()
+        {   
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index","Home");
         }
     }
 }
