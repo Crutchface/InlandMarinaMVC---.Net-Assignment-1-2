@@ -1,6 +1,7 @@
 ﻿using Humanizer.Localisation;
 using InlandData;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +15,17 @@ namespace InlandMarinaAssignment1.Controllers
         // to the instance of the
         // InlandContext that you interact with in methods to perform database operations. 
         InlandContext _context;
+        private readonly UserManager<User> userManager;
 
         //This is the constructor for the SlipController class. 
         //The constructor takes a single parameter, InlandContext context, which represents
         //an instance of the InlandContext class, a class that
         //inherits from DbContext in Entity Framework(EF) Core and is responsible for managing
         //database operations
-        public SlipController(InlandContext context)
+        public SlipController(InlandContext context, UserManager<User> userManager)
         {
             _context = context;
+            this.userManager = userManager;
         }  
         // GET: SlipController : Our endpoint for returning views for all slips (Not used)
         public ActionResult Index()
@@ -161,12 +164,35 @@ namespace InlandMarinaAssignment1.Controllers
             }
         }
 
-        public ActionResult BookSlip(int id)
-        {
-            Slip? slip = SlipManager.GetSlipById(_context, id);
+        //public ActionResult BookSlip(int id)
+        //{
+        //    Slip? slip = SlipManager.GetSlipById(_context, id);
 
                 
-            return View(slip);
+        //    return View(slip);
+        //}
+        //[HttpPost]
+        public async Task<ActionResult> BookSlip(int id)
+        {
+            if (ModelState.IsValid) 
+            {
+                int slipId = id;
+                var user = await userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    
+                    // Handle case where the user is not found (logged-out or invalid session)
+                    return View();
+                }
+
+                TempData["Message"] = "Successfully Booked!";
+                int customerId = Convert.ToInt32(user.CustomerId);
+                LeaseManager.NewLease(_context, slipId, customerId);
+
+            }
+
+
+            return RedirectToAction("Index", "Lease"); ;
         }
     }
 }

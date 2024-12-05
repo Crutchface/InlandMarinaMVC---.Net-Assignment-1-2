@@ -20,9 +20,14 @@ namespace InlandData
         }
         // Function to get a list based on the dock ID provided 
         public static List<Slip> GetSlipsByDock(InlandContext db, int dockId)
-        {   
-            // where clause to specify which slips are returned 
-            return db.Slips.Where(s => s.DockID == dockId).ToList();
+        {
+            // Get the list of leased SlipIds
+            var leasedSlipIds = db.Leases.Select(l => l.SlipID).ToList();
+
+            // Return the slips that match the dockId and are not leased
+            return db.Slips
+                .Where(s => s.DockID == dockId && !leasedSlipIds.Contains(s.SlipId)) // Exclude leased slips
+                .ToList();
         }
 
         public static Slip? GetSlipById(InlandContext db, int id) 
