@@ -4,20 +4,20 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace InlandData
 {   
-    public class InlandContext : DbContext
+    public class InlandContext : IdentityDbContext<User>
     {
-        //public InlandContext() : base() { } // just calls the base class constructor
-        
+        public InlandContext() : base() { } // just calls the base class constructor
+
         //  Our inland context function that is the constructor for inland context using entity framework with specific options
-        public InlandContext(DbContextOptions<InlandContext> options) : base(options)
-            // Inherits from Dbcontext from ef
-        {
-        }
+        public InlandContext(DbContextOptions<InlandContext> options) : base(options) { }
+        // Inherits from Dbcontext from ef
+        
 
         public DbSet<Dock> Docks { get; set; }
         public DbSet<Slip> Slips { get; set; }
@@ -25,104 +25,112 @@ namespace InlandData
         public DbSet<Customer> Customers { get; set; }
 
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    // provide connection string
-        //    optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=Inland;Trusted_Connection=True; TrustServerCertificate=True");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // provide connection string
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;" +
+                "Database=Inland;" +
+                "Trusted_Connection=True; " +
+                "MultipleActiveResultSets=true; " +
+                "TrustServerCertificate=True");
+        }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Slip>().HasData(
-            new Slip { SlipId = 1, Width = 9, Length = 20, DockID = 1 },
-            new Slip { SlipId = 2, Width = 12, Length = 25, DockID = 1 },
+            new Slip { SlipId = 1, Width = 9, Length = 20, DockID = 2 },
+            new Slip { SlipId = 2, Width = 12, Length = 25, DockID = 3 },
             new Slip { SlipId = 3, Width = 8, Length = 18, DockID = 1 },
-            new Slip { SlipId = 4, Width = 10, Length = 22, DockID = 1 },
+            new Slip { SlipId = 4, Width = 10, Length = 22, DockID = 3 },
             new Slip { SlipId = 5, Width = 12, Length = 30, DockID = 1 },
-            new Slip { SlipId = 6, Width = 11, Length = 26, DockID = 1 },
+            new Slip { SlipId = 6, Width = 11, Length = 26, DockID = 2 },
             new Slip { SlipId = 7, Width = 9, Length = 21, DockID = 1 },
-            new Slip { SlipId = 8, Width = 11, Length = 27, DockID = 1 },
-            new Slip { SlipId = 9, Width = 10, Length = 23, DockID = 1 },
+            new Slip { SlipId = 8, Width = 11, Length = 27, DockID = 3 },
+            new Slip { SlipId = 9, Width = 10, Length = 23, DockID = 2 },
             new Slip { SlipId = 10, Width = 9, Length = 29, DockID = 1 },
-            new Slip { SlipId = 11, Width = 8, Length = 18, DockID = 1 },
-            new Slip { SlipId = 12, Width = 12, Length = 30, DockID = 1 },
+            new Slip { SlipId = 11, Width = 8, Length = 18, DockID = 2 },
+            new Slip { SlipId = 12, Width = 12, Length = 30, DockID = 3 },
             new Slip { SlipId = 13, Width = 9, Length = 22, DockID = 1 },
-            new Slip { SlipId = 14, Width = 11, Length = 27, DockID = 1 },
-            new Slip { SlipId = 15, Width = 10, Length = 24, DockID = 1 },
+            new Slip { SlipId = 14, Width = 11, Length = 27, DockID = 3 },
+            new Slip { SlipId = 15, Width = 10, Length = 24, DockID = 2 },
             new Slip { SlipId = 16, Width = 9, Length = 26, DockID = 1 },
-            new Slip { SlipId = 17, Width = 8, Length = 20, DockID = 1 },
+            new Slip { SlipId = 17, Width = 8, Length = 20, DockID = 3 },
             new Slip { SlipId = 18, Width = 12, Length = 28, DockID = 1 },
-            new Slip { SlipId = 19, Width = 10, Length = 23, DockID = 1 },
+            new Slip { SlipId = 19, Width = 10, Length = 23, DockID = 2 },
             new Slip { SlipId = 20, Width = 11, Length = 25, DockID = 1 },
-            new Slip { SlipId = 21, Width = 12, Length = 27, DockID = 1 },
-            new Slip { SlipId = 22, Width = 9, Length = 21, DockID = 1 },
+            new Slip { SlipId = 21, Width = 12, Length = 27, DockID = 2 },
+            new Slip { SlipId = 22, Width = 9, Length = 21, DockID = 3 },
             new Slip { SlipId = 23, Width = 8, Length = 19, DockID = 1 },
-            new Slip { SlipId = 24, Width = 10, Length = 25, DockID = 1 },
-            new Slip { SlipId = 25, Width = 11, Length = 24, DockID = 1 },
+            new Slip { SlipId = 24, Width = 10, Length = 25, DockID = 2 },
+            new Slip { SlipId = 25, Width = 11, Length = 24, DockID = 3 },
             new Slip { SlipId = 26, Width = 12, Length = 29, DockID = 1 },
-            new Slip { SlipId = 27, Width = 8, Length = 21, DockID = 1 },
+            new Slip { SlipId = 27, Width = 8, Length = 21, DockID = 3 },
             new Slip { SlipId = 28, Width = 10, Length = 22, DockID = 1 },
-            new Slip { SlipId = 29, Width = 9, Length = 18, DockID = 1 },
-            new Slip { SlipId = 30, Width = 11, Length = 30, DockID = 1 },
-            new Slip { SlipId = 31, Width = 12, Length = 26, DockID = 1 },
+            new Slip { SlipId = 29, Width = 9, Length = 18, DockID = 2 },
+            new Slip { SlipId = 30, Width = 11, Length = 30, DockID = 3 },
+            new Slip { SlipId = 31, Width = 12, Length = 26, DockID = 2 },
             new Slip { SlipId = 32, Width = 10, Length = 27, DockID = 1 },
-            new Slip { SlipId = 33, Width = 8, Length = 22, DockID = 1 },
+            new Slip { SlipId = 33, Width = 8, Length = 22, DockID = 3 },
             new Slip { SlipId = 34, Width = 9, Length = 23, DockID = 1 },
-            new Slip { SlipId = 35, Width = 11, Length = 20, DockID = 1 },
-            new Slip { SlipId = 36, Width = 8, Length = 25, DockID = 1 },
+            new Slip { SlipId = 35, Width = 11, Length = 20, DockID = 2 },
+            new Slip { SlipId = 36, Width = 8, Length = 25, DockID = 3 },
             new Slip { SlipId = 37, Width = 10, Length = 28, DockID = 1 },
-            new Slip { SlipId = 38, Width = 12, Length = 24, DockID = 1 },
+            new Slip { SlipId = 38, Width = 12, Length = 24, DockID = 2 },
             new Slip { SlipId = 39, Width = 9, Length = 29, DockID = 1 },
-            new Slip { SlipId = 40, Width = 11, Length = 22, DockID = 1 },
-            new Slip { SlipId = 41, Width = 12, Length = 23, DockID = 1 },
+            new Slip { SlipId = 40, Width = 11, Length = 22, DockID = 3 },
+            new Slip { SlipId = 41, Width = 12, Length = 23, DockID = 2 },
             new Slip { SlipId = 42, Width = 10, Length = 26, DockID = 1 },
-            new Slip { SlipId = 43, Width = 8, Length = 27, DockID = 1 },
-            new Slip { SlipId = 44, Width = 9, Length = 24, DockID = 1 },
+            new Slip { SlipId = 43, Width = 8, Length = 27, DockID = 3 },
+            new Slip { SlipId = 44, Width = 9, Length = 24, DockID = 2 },
             new Slip { SlipId = 45, Width = 11, Length = 21, DockID = 1 },
-            new Slip { SlipId = 46, Width = 12, Length = 22, DockID = 1 },
-            new Slip { SlipId = 47, Width = 8, Length = 23, DockID = 1 },
+            new Slip { SlipId = 46, Width = 12, Length = 22, DockID = 2 },
+            new Slip { SlipId = 47, Width = 8, Length = 23, DockID = 3 },
             new Slip { SlipId = 48, Width = 10, Length = 21, DockID = 1 },
-            new Slip { SlipId = 49, Width = 9, Length = 25, DockID = 1 },
+            new Slip { SlipId = 49, Width = 9, Length = 25, DockID = 2 },
             new Slip { SlipId = 50, Width = 11, Length = 28, DockID = 1 },
-            new Slip { SlipId = 51, Width = 12, Length = 29, DockID = 1 },
-            new Slip { SlipId = 52, Width = 8, Length = 24, DockID = 1 },
-            new Slip { SlipId = 53, Width = 10, Length = 30, DockID = 1 },
+            new Slip { SlipId = 51, Width = 12, Length = 29, DockID = 3 },
+            new Slip { SlipId = 52, Width = 8, Length = 24, DockID = 2 },
+            new Slip { SlipId = 53, Width = 10, Length = 30, DockID = 3 },
             new Slip { SlipId = 54, Width = 9, Length = 28, DockID = 1 },
-            new Slip { SlipId = 55, Width = 11, Length = 29, DockID = 1 },
-            new Slip { SlipId = 56, Width = 12, Length = 25, DockID = 1 },
+            new Slip { SlipId = 55, Width = 11, Length = 29, DockID = 2 },
+            new Slip { SlipId = 56, Width = 12, Length = 25, DockID = 3 },
             new Slip { SlipId = 57, Width = 8, Length = 30, DockID = 1 },
-            new Slip { SlipId = 58, Width = 10, Length = 24, DockID = 1 },
-            new Slip { SlipId = 59, Width = 9, Length = 22, DockID = 1 },
+            new Slip { SlipId = 58, Width = 10, Length = 24, DockID = 3 },
+            new Slip { SlipId = 59, Width = 9, Length = 22, DockID = 2 },
             new Slip { SlipId = 60, Width = 11, Length = 23, DockID = 1 },
-            new Slip { SlipId = 61, Width = 12, Length = 18, DockID = 1 },
-            new Slip { SlipId = 62, Width = 8, Length = 26, DockID = 1 },
+            new Slip { SlipId = 61, Width = 12, Length = 18, DockID = 3 },
+            new Slip { SlipId = 62, Width = 8, Length = 26, DockID = 2 },
             new Slip { SlipId = 63, Width = 10, Length = 19, DockID = 1 },
-            new Slip { SlipId = 64, Width = 9, Length = 30, DockID = 1 },
-            new Slip { SlipId = 65, Width = 11, Length = 25, DockID = 1 },
+            new Slip { SlipId = 64, Width = 9, Length = 30, DockID = 3 },
+            new Slip { SlipId = 65, Width = 11, Length = 25, DockID = 2 },
             new Slip { SlipId = 66, Width = 12, Length = 27, DockID = 1 },
-            new Slip { SlipId = 67, Width = 8, Length = 19, DockID = 1 },
-            new Slip { SlipId = 68, Width = 10, Length = 22, DockID = 1 },
+            new Slip { SlipId = 67, Width = 8, Length = 19, DockID = 3 },
+            new Slip { SlipId = 68, Width = 10, Length = 22, DockID = 2 },
             new Slip { SlipId = 69, Width = 9, Length = 21, DockID = 1 },
-            new Slip { SlipId = 70, Width = 11, Length = 30, DockID = 1 },
+            new Slip { SlipId = 70, Width = 11, Length = 30, DockID = 3 },
             new Slip { SlipId = 71, Width = 12, Length = 26, DockID = 1 },
-            new Slip { SlipId = 72, Width = 8, Length = 28, DockID = 1 },
-            new Slip { SlipId = 73, Width = 10, Length = 30, DockID = 1 },
+            new Slip { SlipId = 72, Width = 8, Length = 28, DockID = 2 },
+            new Slip { SlipId = 73, Width = 10, Length = 30, DockID = 3 },
             new Slip { SlipId = 74, Width = 9, Length = 27, DockID = 1 },
-            new Slip { SlipId = 75, Width = 11, Length = 22, DockID = 1 },
-            new Slip { SlipId = 76, Width = 12, Length = 23, DockID = 1 },
+            new Slip { SlipId = 75, Width = 11, Length = 22, DockID = 2 },
+            new Slip { SlipId = 76, Width = 12, Length = 23, DockID = 3 },
             new Slip { SlipId = 77, Width = 8, Length = 30, DockID = 1 },
-            new Slip { SlipId = 78, Width = 10, Length = 26, DockID = 1 },
-            new Slip { SlipId = 79, Width = 9, Length = 20, DockID = 1 },
+            new Slip { SlipId = 78, Width = 10, Length = 26, DockID = 2 },
+            new Slip { SlipId = 79, Width = 9, Length = 20, DockID = 3 },
             new Slip { SlipId = 80, Width = 11, Length = 29, DockID = 1 },
-            new Slip { SlipId = 81, Width = 12, Length = 24, DockID = 1 },
-            new Slip { SlipId = 82, Width = 8, Length = 22, DockID = 1 },
+            new Slip { SlipId = 81, Width = 12, Length = 24, DockID = 3 },
+            new Slip { SlipId = 82, Width = 8, Length = 22, DockID = 2 },
             new Slip { SlipId = 83, Width = 10, Length = 25, DockID = 1 },
-            new Slip { SlipId = 84, Width = 9, Length = 18, DockID = 1 },
-            new Slip { SlipId = 85, Width = 11, Length = 21, DockID = 1 },
+            new Slip { SlipId = 84, Width = 9, Length = 18, DockID = 3 },
+            new Slip { SlipId = 85, Width = 11, Length = 21, DockID = 2 },
             new Slip { SlipId = 86, Width = 12, Length = 28, DockID = 1 },
-            new Slip { SlipId = 87, Width = 8, Length = 19, DockID = 1 },
-            new Slip { SlipId = 88, Width = 10, Length = 27, DockID = 1 },
+            new Slip { SlipId = 87, Width = 8, Length = 19, DockID = 3 },
+            new Slip { SlipId = 88, Width = 10, Length = 27, DockID = 2 },
             new Slip { SlipId = 89, Width = 9, Length = 23, DockID = 1 },
-            new Slip { SlipId = 90, Width = 10, Length = 23, DockID = 1 }
+            new Slip { SlipId = 90, Width = 10, Length = 23, DockID = 3 }
+
 
 
             );

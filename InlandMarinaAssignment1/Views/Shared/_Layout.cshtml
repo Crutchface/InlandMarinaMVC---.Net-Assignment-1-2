@@ -41,18 +41,31 @@
 
        
         <div> *@
-            <header class="d-flex justify-content-center  w-100">
+         <header class="d-flex justify-content-center w-100">
 
-                <!-- Full-width navigation bar with padding removed on the left and right -->
-                <ul class="nav nav-pills w-100 justify-content-left align-items-center">
-                    <li class="nav-item"><a class="nav-link text-dark"  asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/index.png" height="50px"/></a></li>
+    <!-- Full-width navigation bar with padding removed on the left and right -->
+    <ul class="nav nav-pills w-100 justify-content-left align-items-center">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/index.png" height="50px"/>
+            </a>
+        </li>
+        <li class="nav-item ms-5">
+            <a class="nav-link text-dark @if (ViewBag.Page == "Home") {<text>active</text>} " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark @if (ViewBag.Page == "Contact") {<text>active</text>} " asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark @if (ViewBag.Page == "Slips") {<text>active</text>} " asp-area="" asp-controller="Slip" asp-action="FilteredSlips">View Slips</a>
+        </li>
 
-                    <li class="nav-item ms-5"><a class="nav-link text-dark @if (ViewBag.Page == "Home") {<text>active</text>}" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark @if (ViewBag.Page == "Contact") {<text>active</text>}" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark @if (ViewBag.Page == "Slips") {<text>active</text>}" asp-area="" asp-controller="Slip" asp-action="FilteredSlips">View Slips</a></li>
-                    
-                </ul>
-            </header>
+        <!-- Place _LoginPartial on the far right -->
+        <li class="nav-item ms-auto">
+            <partial name="_LoginPartial"/>
+        </li>
+    </ul>
+</header>
      
    @*  </header> *@
 

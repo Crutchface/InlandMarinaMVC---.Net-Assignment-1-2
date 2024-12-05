@@ -47,6 +47,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Dock.Name)
             </td>
+                        <td>
+                            @Html.ActionLink("Book", "Book", new { /* id=item.PrimaryKey */ }) 
+                           
+                        </td>
          
         </tr>
 }

@@ -1,0 +1,34 @@
+﻿@model InlandData.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div>
+    <h2>Login</h2>
+    <form asp-action="Login" method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div>
+            <label asp-for="Username" class="control-label"> </label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-dnager"></span>
+        </div>
+        <div>
+            <label asp-for="Password" class="control-label"> </label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-dnager"></span>
+        </div>
+        <div>
+            <label class="RememberMe" class="form-check-label"> @Html.DisplayNameFor(z => z.RememberMe) </label>
+            <input asp-for="RememberMe" class="form-check-input" />
+            
+        </div>
+       <div class="Row">
+           <div>
+                <a asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]">Dont have an account? Click here to register.</a>
+           </div>
+            <div>
+                <input type="submit" value="login" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>

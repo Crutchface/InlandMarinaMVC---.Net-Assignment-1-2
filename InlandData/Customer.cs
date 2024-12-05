@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InlandData
 {
-    public class Customer
+    public class Customer 
     {
         public int CustomerId { get; set; }
         [Required(ErrorMessage = "Please Enter a First Name")]
