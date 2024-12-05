@@ -24,6 +24,11 @@ namespace InlandData
             // where clause to specify which slips are returned 
             return db.Slips.Where(s => s.DockID == dockId).ToList();
         }
+
+        public static Slip? GetSlipById(InlandContext db, int id) 
+        {
+            return db.Slips.Find(id);
+        }
      
 
     }

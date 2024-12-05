@@ -160,5 +160,13 @@ namespace InlandMarinaAssignment1.Controllers
                 return View();
             }
         }
+
+        public ActionResult BookSlip(int id)
+        {
+            Slip? slip = SlipManager.GetSlipById(_context, id);
+
+                
+            return View(slip);
+        }
     }
 }
