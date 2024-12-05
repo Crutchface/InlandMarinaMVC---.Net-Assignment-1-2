@@ -164,14 +164,7 @@ namespace InlandMarinaAssignment1.Controllers
             }
         }
 
-        //public ActionResult BookSlip(int id)
-        //{
-        //    Slip? slip = SlipManager.GetSlipById(_context, id);
-
-                
-        //    return View(slip);
-        //}
-        //[HttpPost]
+      
         public async Task<ActionResult> BookSlip(int id)
         {
             if (ModelState.IsValid) 

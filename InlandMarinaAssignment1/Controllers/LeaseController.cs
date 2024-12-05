@@ -18,6 +18,7 @@ namespace InlandMarinaAssignment1.Controllers
 
         public async Task<ActionResult> Index()
         {
+            ViewBag.Page = "Lease";
             var user = await userManager.GetUserAsync(User);
             if (user == null)
             {

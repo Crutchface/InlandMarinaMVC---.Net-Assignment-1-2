@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,12 @@ namespace InlandData
         public static List<Lease> GetMyLease(InlandContext db, int userId)
         {
             // where clause to specify which slips are returned 
-            return db.Leases.Where(s => s.CustomerID == userId).ToList();
+            return db.Leases
+                        .Where(l => l.CustomerID == userId)
+                        .Include(l => l.Slip)  // Include the related Slip for each Lease
+                        .ThenInclude(s => s.Dock)
+                         .OrderBy(l => l.Slip.SlipId)// Include the related Dock for each Slip
+                        .ToList();
         }
 
         public static void NewLease(InlandContext db, int slipId, int customerId)

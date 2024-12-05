@@ -1,4 +1,7 @@
-﻿@model IEnumerable<InlandData.Slip>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<InlandData.User> signInManager
+
+@model IEnumerable<InlandData.Slip>
 
 @{
     ViewData["Title"] = "All Slips";
@@ -47,10 +50,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Dock.Name)
             </td>
-                        <td>
-                            @Html.ActionLink("Slip", "BookSlip", new { id = item.SlipId })
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <td>
+                                @Html.ActionLink("Book This Slip!", "BookSlip", new { id = item.SlipId }, new { onclick = "return confirm('Are you sure you want to book this slip?');" })
 
-                        </td>
+                        </td>}
          
         </tr>
 }

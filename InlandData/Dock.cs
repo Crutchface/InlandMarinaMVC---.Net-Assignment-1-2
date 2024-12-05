@@ -11,6 +11,7 @@ namespace InlandData
     {   
         public int DockId { get; set; }
         [Required(ErrorMessage = "Please Enter a Name")]
+        [Display(Name = "Dock Name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter true or false")]
         public bool WaterService { get; set; }
