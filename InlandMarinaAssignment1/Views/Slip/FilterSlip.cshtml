@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Filter By Dock";
+}
+<div class="d-flex justify-content-center">
+    <div class="table-responsive table-striped col-6 justify-content-center">
+        <h1>Available Slips</h1>
+
+            <p>
+                <select id="uxDocks" asp-items="@ViewBag.Dock" class="form-select" >
+                </select>
+            </p>
+
+            <div id="uxDisplay">
+                @await Component.InvokeAsync("SlipsByDock", 5)
+            </div>
+
+@section Scripts
+{   
+    <script>
+         $(document).ready(function () {
+            $("#uxDocks").change(function () {
+                var dockId = $("#uxDocks").val();// Convert to number (integer)
+                $.ajax({
+                    method: 'GET',
+                    url: "/Slip/GetSlipsByDock",
+                    data: { dockId: dockId }  // Send dockId as a string by default. Need to convert
+                }).done(function (result) {
+                    $("#uxDisplay").html(result);
+                });
+            });
+        });
+
+    </script>
+}

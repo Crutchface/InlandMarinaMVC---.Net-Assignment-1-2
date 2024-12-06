@@ -60,7 +60,7 @@
             <a class="nav-link text-dark @if (ViewBag.Page == "Contact") {<text>active</text>} " asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark @if (ViewBag.Page == "Slips") {<text>active</text>} " asp-area="" asp-controller="Slip" asp-action="FilteredSlips">View Slips</a>
+            <a class="nav-link text-dark @if (ViewBag.Page == "Slips") {<text>active</text>} " asp-area="" asp-controller="Slip" asp-action="FilterSlip">View Slips</a>
         </li>
             @if (signInManager.IsSignedIn(User))
             {

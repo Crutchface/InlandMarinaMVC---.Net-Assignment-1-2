@@ -27,6 +27,7 @@ namespace InlandData
             // Return the slips that match the dockId and are not leased
             return db.Slips
                 .Where(s => s.DockID == dockId && !leasedSlipIds.Contains(s.SlipId)) // Exclude leased slips
+                .Include(s => s.Dock)
                 .ToList();
         }
 
