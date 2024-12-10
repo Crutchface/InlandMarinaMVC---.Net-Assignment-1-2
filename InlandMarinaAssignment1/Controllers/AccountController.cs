@@ -9,6 +9,7 @@ namespace InlandMarinaAssignment1.Controllers
         // Identity object to manage the signin
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
+
         // For DB Stufff
         InlandContext _context;
       
@@ -77,7 +78,8 @@ namespace InlandMarinaAssignment1.Controllers
                 // Add a new user 
                 User newUser = new User()
                 {
-                    UserName = registerModel.Username,
+                    UserName = registerModel.FirstName[0].ToString().ToLower() + registerModel.LastName.ToLower(),
+                    //UserName = registerModel.Username,
                     Email = registerModel.Email,
                     Name = registerModel.FirstName!,
                     CustomerId = lastId,  // Assign the generated CustomerId

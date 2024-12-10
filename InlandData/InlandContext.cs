@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client.AppConfig;
 
 
 namespace InlandData
@@ -182,7 +184,235 @@ namespace InlandData
                 new Lease { LeaseId = 18, SlipID = 29, CustomerID = 18 },
                 new Lease { LeaseId = 19, SlipID = 60, CustomerID = 19 },
                 new Lease { LeaseId = 20, SlipID = 14, CustomerID = 20 });
+            var hasher = new PasswordHasher<User>();
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    CustomerId = 1,
+                    UserName = "jsmith",
+                    Email = "john.smith@example.com",
+                    NormalizedEmail = "JOHN.SMITH@EXAMPLE.COM",
+                    NormalizedUserName = "JSMITH",
+                    PasswordHash = hasher.HashPassword(null, "password"),  
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "John"
+                },
+                new User
+                {
+                    CustomerId = 2,
+                    UserName = "ejohnson",
+                    Email = "emily.johnson@example.com",
+                    NormalizedEmail = "EMILY.JOHNSON@EXAMPLE.COM",
+                    NormalizedUserName = "EJOHNSON",
+                    PasswordHash = hasher.HashPassword(null, "password"), 
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Emily"
+                },
+                new User
+                {
+                    CustomerId = 3,
+                    UserName = "dbrown",
+                    Email = "david.brown@example.com",
+                    NormalizedEmail = "DAVID.BROWN@EXAMPLE.COM",
+                    NormalizedUserName = "DBROWN",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "David"
+                },
+                new User
+                {
+                    CustomerId = 4,
+                    UserName = "jdavis",
+                    Email = "jessica.davis@example.com",
+                    NormalizedEmail = "JESSICA.DAVIS@EXAMPLE.COM",
+                    NormalizedUserName = "JDAVIS",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Jessica"
+                },
+                new User
+                {
+                    CustomerId = 5,
+                    UserName = "mmiller",
+                    Email = "michael.miller@example.com",
+                    NormalizedEmail = "MICHAEL.MILLER@EXAMPLE.COM",
+                    NormalizedUserName = "MMILLER",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Michael"
+                },
+                new User
+                {
+                    CustomerId = 6,
+                    UserName = "swilson",
+                    Email = "sarah.wilson@example.com",
+                    NormalizedEmail = "SARAH.WILSON@EXAMPLE.COM",
+                    NormalizedUserName = "SWILSON",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Sarah"
+                },
+                new User
+                {
+                    CustomerId = 7,
+                    UserName = "dmoore",
+                    Email = "daniel.moore@example.com",
+                    NormalizedEmail = "DANIEL.MOORE@EXAMPLE.COM",
+                    NormalizedUserName = "DMOORE",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Daniel"
+                },
+                new User
+                {
+                    CustomerId = 8,
+                    UserName = "otaylor",
+                    Email = "olivia.taylor@example.com",
+                    NormalizedEmail = "OLIVIA.TAYLOR@EXAMPLE.COM",
+                    NormalizedUserName = "OTAYLOR",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Olivia"
+                },
+                new User
+                {
+                    CustomerId = 9,
+                    UserName = "manderson",
+                    Email = "matthew.anderson@example.com",
+                    NormalizedEmail = "MATTHEW.ANDERSON@EXAMPLE.COM",
+                    NormalizedUserName = "MANDERSON",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Matthew"
+                },
+                new User
+                {
+                    CustomerId = 10,
+                    UserName = "sthomas",
+                    Email = "sophia.thomas@example.com",
+                    NormalizedEmail = "SOPHIA.THOMAS@EXAMPLE.COM",
+                    NormalizedUserName = "STHOMAS",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Sophia"
+                },
+                new User
+                {
+                    CustomerId = 11,
+                    UserName = "jjackson",
+                    Email = "james.jackson@example.com",
+                    NormalizedEmail = "JAMES.JACKSON@EXAMPLE.COM",
+                    NormalizedUserName = "JJACKSON",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "James"
+                },
+                new User
+                {
+                    CustomerId = 12,
+                    UserName = "iwhite",
+                    Email = "isabella.white@example.com",
+                    NormalizedEmail = "ISABELLA.WHITE@EXAMPLE.COM",
+                    NormalizedUserName = "IWHITE",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Isabella"
+                },
+                new User
+                {
+                    CustomerId = 13,
+                    UserName = "aharris",
+                    Email = "alexander.harris@example.com",
+                    NormalizedEmail = "ALEXANDER.HARRIS@EXAMPLE.COM",
+                    NormalizedUserName = "AHARRIS",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Alexander"
+                },
+                new User
+                {
+                    CustomerId = 14,
+                    UserName = "amartin",
+                    Email = "ava.martin@example.com",
+                    NormalizedEmail = "AVA.MARTIN@EXAMPLE.COM",
+                    NormalizedUserName = "AMARTIN",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Ava"
+                },
+                new User
+                {
+                    CustomerId = 15,
+                    UserName = "egarcia",
+                    Email = "ethan.garcia@example.com",
+                    NormalizedEmail = "ETHAN.GARCIA@EXAMPLE.COM",
+                    NormalizedUserName = "EGARCIA",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Ethan"
+                },
+                new User
+                {
+                    CustomerId = 16,
+                    UserName = "clee",
+                    Email = "charlotte.lee@example.com",
+                    NormalizedEmail = "CHARLOTTE.LEE@EXAMPLE.COM",
+                    NormalizedUserName = "CLEE",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Charlotte"
+                },
+                new User
+                {
+                    CustomerId = 17,
+                    UserName = "hperez",
+                    Email = "henry.perez@example.com",
+                    NormalizedEmail = "HENRY.PEREZ@EXAMPLE.COM",
+                    NormalizedUserName = "HPEREZ",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Henry"
+                },
+                new User
+                {
+                    CustomerId = 18,
+                    UserName = "amartinez",
+                    Email = "amelia.martinez@example.com",
+                    NormalizedEmail = "AMELIA.MARTINEZ@EXAMPLE.COM",
+                    NormalizedUserName = "AMARTINEZ",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Amelia"
+                },
+                new User
+                {
+                    CustomerId = 19,
+                    UserName = "brodriguez",
+                    Email = "benjamin.rodriguez@example.com",
+                    NormalizedEmail = "BENJAMIN.RODRIGUEZ@EXAMPLE.COM",
+                    NormalizedUserName = "BRODRIGUEZ",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Benjamin"
+                },
+                new User
+                {
+                    CustomerId = 20,
+                    UserName = "ggonzalez",
+                    Email = "grace.gonzalez@example.com",
+                    NormalizedEmail = "GRACE.GONZALEZ@EXAMPLE.COM",
+                    NormalizedUserName = "GGONZALEZ",
+                    PasswordHash = hasher.HashPassword(null, "password"),
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
+                    Name = "Grace"
+                }
+
+                );
+
+            
         }
+        
 
     }
 }

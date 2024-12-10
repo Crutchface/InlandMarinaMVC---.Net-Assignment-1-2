@@ -10,8 +10,8 @@ namespace InlandData
     public class RegisterViewModel
     {
         //public int Id { get; set; }
-        [Required(ErrorMessage = "Please Enter a UserName")]
-        public string? Username { get; set; }
+        //[Required(ErrorMessage = "Please Enter a UserName")]
+        //public string? Username { get; set; }
 
         [Required(ErrorMessage = "Please Enter a password")]
         [DataType(DataType.Password)]
