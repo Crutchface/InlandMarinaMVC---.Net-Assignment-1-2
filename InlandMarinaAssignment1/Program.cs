@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // Adds our Inland context using the connection string we stored in appsettings
 builder.Services.AddDbContext<InlandContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("InlandContext")));
+
 // Adds our identity service and defines password requirements for it
 builder.Services.AddIdentity<User, IdentityRole>(
     options => { options.Password.RequiredUniqueChars = 0;

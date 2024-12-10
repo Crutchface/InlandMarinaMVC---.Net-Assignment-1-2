@@ -24,7 +24,7 @@
                 $.ajax({
                     method: 'GET',
                     url: "/Slip/GetSlipsByDock",
-                    data: { dockId: dockId }  // Send dockId as a string by default. Need to convert
+                    data: { dockId: dockId }  // Send dockId as a string by default. Need to convert.
                 }).done(function (result) {
                     $("#uxDisplay").html(result);
                 });
