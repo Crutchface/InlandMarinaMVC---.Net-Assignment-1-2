@@ -263,7 +263,7 @@ namespace InlandData
                     PasswordHash = hasher.HashPassword(null, "password"),
                     SecurityStamp = Guid.NewGuid().ToString("D"),
                     Name = "Daniel"
-                },
+                }, 
                 new User
                 {
                     CustomerId = 8,
